@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Times CBALHO</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .team-box {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #e3f2fd;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="w3-container w3-blue w3-center w3-padding-16">
+        <h1><b>Seleção de Times CBALHO</b></h1>
+        <p>Escolha os jogadores disponíveis e separe-os nos times</p>
+    </header>
+
+    <!-- Seleção de Jogadores Disponíveis -->
+    <section class="w3-container w3-padding-32">
+        <h2>Seleção de Jogadores Disponíveis</h2>
+        <form id="playerSelectionForm">
+            <div class="w3-container w3-light-blue">
+                <h3>TIER CARTERR</h3>
+                <label><input type="checkbox" name="players" value="CARTERR"> CARTERR</label>
+            </div>
+
+            <div class="w3-container w3-light-blue">
+                <h3>TIER S</h3>
+                <label><input type="checkbox" name="players" value="Caio"> Caio</label><br>
+                <label><input type="checkbox" name="players" value="Jhow"> Jhow</label><br>
+                <label><input type="checkbox" name="players" value="Gui"> Gui</label><br>
+                <label><input type="checkbox" name="players" value="Bruno"> Bruno</label><br>
+                <label><input type="checkbox" name="players" value="Jorge Neto"> Jorge Neto</label><br>
+            </div>
+
+            <div class="w3-container w3-light-blue">
+                <h3>TIER A</h3>
+                <label><input type="checkbox" name="players" value="Liro"> Liro</label><br>
+                <label><input type="checkbox" name="players" value="Nery"> Nery</label><br>
+                <label><input type="checkbox" name="players" value="Jean"> Jean</label><br>
+                <label><input type="checkbox" name="players" value="Gaia"> Gaia</label><br>
+                <label><input type="checkbox" name="players" value="Tetarius"> Tetarius</label><br>
+                <label><input type="checkbox" name="players" value="Zé da Manga"> Zé da Manga</label><br>
+                <label><input type="checkbox" name="players" value="Denver"> Denver</label><br>
+            </div>
+
+            <!-- Repita para outros Tiers -->
+            
+            <button type="button" class="w3-button w3-blue" onclick="generateTeams()">Gerar Times</button>
+        </form>
+    </section>
+
+    <!-- Exibição de Times -->
+    <section class="w3-container w3-padding-64">
+        <h2>Times Selecionados</h2>
+        <div id="team1" class="team-box">
+            <h3>Time 1</h3>
+        </div>
+        <div id="team2" class="team-box">
+            <h3>Time 2</h3>
+        </div>
+    </section>
+
+    <script>
+        function generateTeams() {
+            const form = document.forms['playerSelectionForm'];
+            const selectedPlayers = Array.from(form['players'])
+                .filter(input => input.checked)
+                .map(input => input.value);
+
+            // Dividir os jogadores entre os times de acordo com o tier
+            const team1 = [];
+            const team2 = [];
+            
+            const tierS = ['Caio', 'Jhow', 'Gui', 'Bruno', 'Jorge Neto'];
+            const tierA = ['Liro', 'Nery', 'Jean', 'Gaia', 'Tetarius', 'Zé da Manga', 'Denver'];
+            const tierB = ['Paredes', 'Rika', 'Lukinhas', 'Edu', 'Keria', 'Coelhão', 'Japa', 'Rimuru'];
+            const tierC = ['Kaiak', 'Água', 'Oceano'];
+            const tierD = ['Herols', 'Igor', 'Xuaum'];
+
+            // Distribuir jogadores nos times de acordo com o tier
+            selectedPlayers.forEach(player => {
+                if (tierS.includes(player)) {
+                    team1.push(player); // Para este exemplo, adiciona tudo em time 1
+                } else if (tierA.includes(player)) {
+                    team2.push(player); // Divide entre time 1 e time 2
+                }
+            });
+
+            // Exibir resultados
+            document.getElementById('team1').innerHTML = `<h3>Time 1</h3><p>${team1.join(', ')}</p>`;
+            document.getElementById('team2').innerHTML = `<h3>Time 2</h3><p>${team2.join(', ')}</p>`;
+        }
+    </script>
+
+</body>
+</html>
