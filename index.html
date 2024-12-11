@@ -14,7 +14,7 @@
             background-size: cover;
             color: white;
             text-shadow: 2px 2px 5px #000;
-            padding: 50px 20px;
+            padding:5px 10px;
             text-align: center;
             border-radius: 12px;
         }
@@ -103,14 +103,17 @@ body {
     <!-- Hero Section -->
     <section class="hero" style="background-color: #000000;">
     <!-- Header -->
-   <header class="w3-container w3-blue w3-center w3-padding-16 w3-margin-bottom" style="border-radius: 100px;">
     <h1><b>CBALHO</b></h1>
     <p>Campeonato Brasileiro dos Amigos de League of Legends</p>
-</header
-        <h2><b>O que é o CBALHO?</b></h2>
-        <p>O CBALHO é um grupo de amigos que se reúne para jogar League of Legends. As partidas ocorrem geralmente às 20h30, e os times são definidos na hora, como um "rachão". O balanceamento é feito pelo conselho, considerando os tiers dos jogadores.</p>
-        <p>As partidas são disputadas em formato MD3 (Melhor de 3), e é estritamente proibido **quitar** no meio da série.</p>
-    </section>
+</section>
+    
+<div class="w3-center w3-margin-top">
+<img src="cbalho.png" alt="cbalho" style="width:30%; border-radius:50%;">
+    <h2><b>O que é o CBALHO?</b></h2>
+    <p>O CBALHO é um grupo de amigos que se reúne para jogar League of Legends. As partidas ocorrem geralmente de noite, e os times são definidos na hora, como um "rachão". O balanceamento é feito pelo conselho, considerando os tiers dos jogadores.</p>
+    <p>As partidas são disputadas em formato MD3 (Melhor de 3), e é estritamente proibido **quitar** no meio da série.</p>
+</div>
+
 
     <!-- Tabela de Tiers -->
     <section class="w3-container w3-padding-64">
@@ -129,11 +132,11 @@ body {
                 </tr>
                 <tr>
                     <td><b>TIER S</b></td>
-                    <td>Caio, Jhow, Gui, Jorge Neto, Fate, AdGap, Neto, *Miau</td>
+                    <td>Caio, Jhow, Gui, Jorge Neto, Fate, AdGap, Neto, *Miau, *Derrotinha</td>
                 </tr>
                 <tr>
                     <td><b>TIER A</b></td>
-                    <td> Bruno, Gaia, Jean, Tetarius, Zé da Manga, *Arroz</td>
+                    <td> Bruno, Gaia, Jean, Tetarius, Zé da Manga, *Arroz, *Eros</td>
                 </tr>
                 <tr>
                     <td><b>TIER B</b></td>
@@ -190,13 +193,138 @@ body {
 <tr>
                 <td>2º Split/2024</td>
                 <td>Zé da manga</td>
+                <td>Edu</td>
                 <td>Jhow</td>
-                <td>Liro</td>
             </tr>
         </tbody>
     </table>
 
-   
+   <style>
+        /* Estilo para o slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 80%;
+            margin: auto;
+            overflow: hidden;
+           
+        }
+
+        /* Imagens do slideshow */
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        /* Botões de navegação */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Indicadores */
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container w3-margin-top">
+        <!-- Slides -->
+        <img class="slide" src="cbalho1.png" alt="Imagem 1">
+        <img class="slide" src="cbalho2.png" alt="Imagem 2">
+        <img class="slide" src="cbalho3.png" alt="Imagem 3">
+        <img class="slide" src="cbalho4.png" alt="Imagem 4">
+
+        <!-- Botões de navegação -->
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Pontos indicativos -->
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+
+            // Corrige índice se ultrapassar os limites
+            if (index >= slides.length) currentIndex = 0;
+            if (index < 0) currentIndex = slides.length - 1;
+
+            // Esconde todas as imagens
+            slides.forEach(slide => (slide.style.display = 'none'));
+
+            // Remove "active" dos pontos
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Mostra a imagem atual e marca o ponto
+            slides[currentIndex].style.display = 'block';
+            dots[currentIndex].classList.add('active');
+        }
+
+        function changeSlide(step) {
+            currentIndex += step;
+            showSlide(currentIndex);
+        }
+
+        function currentSlide(index) {
+            currentIndex = index - 1;
+            showSlide(currentIndex);
+        }
+
+        // Mostra o primeiro slide ao carregar a página
+        showSlide(currentIndex);
+    </script>
+
+<div class="w3-center w3-text-justify">
+<h2>Após a 3° termporada os pontos, chamados de indilson, foram contabilizados da seguinte forma</h2><p>
+<h3>SOMA(Vitorias*0,5)+(Derrotas*(-0,5))+Vitorias em séries = Indilson<br>
+vitórias valem 0,5 pontos,
+derrotas perdem 0.5 pontos,
+vitorias em series ganham 1 ponto,
+</h3>
+
+</div>
 
 
  <!-- Formulário -->
